@@ -1,4 +1,5 @@
 import 'package:cha_shing/screens/log-in.dart';
+import 'package:cha_shing/screens/verify.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
         accentColor: Color(0xff00a550)
       ),
 
-      home: LogIn(),
+      home: Verify(),
 
     );
   }
