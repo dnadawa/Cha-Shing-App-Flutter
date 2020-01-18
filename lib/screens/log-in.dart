@@ -10,16 +10,20 @@ import 'package:flutter/material.dart';
 class LogIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double x = MediaQuery.of(context).size.width/20;
+    double y = MediaQuery.of(context).size.width/10;
+
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).primaryColor,
       body: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(30),
-            child: Container(width: double.infinity,height: double.infinity,color: Colors.white,),
+            padding:  EdgeInsets.all(x),
+            child: Center(child: Image(image: AssetImage('images/background.png'))),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding:  EdgeInsets.symmetric(horizontal: y),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -31,7 +35,7 @@ class LogIn extends StatelessWidget {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(50,15,50,0),
+                  padding: const EdgeInsets.fromLTRB(40,15,40,0),
                   child: Button(color: Theme.of(context).accentColor,text: 'Create an Account', onclick: (){
                     Navigator.push(
                       context,

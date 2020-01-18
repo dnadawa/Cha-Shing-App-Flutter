@@ -8,17 +8,21 @@ import 'package:flutter/material.dart';
 class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double x = MediaQuery.of(context).size.width/20;
+    double y = MediaQuery.of(context).size.width/10;
+    double z = MediaQuery.of(context).size.height/20;
+    print(z);
     return Scaffold(
-      //resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).primaryColor,
       body: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(30),
-            child: Container(width: double.infinity,height: double.infinity,color: Colors.white,),
+            padding:  EdgeInsets.all(x),
+            child: Center(child: Image(image: AssetImage('images/background.png'))),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.fromLTRB(y,z,y,0),
             child: Center(
               child: SingleChildScrollView(
                 child: Column(

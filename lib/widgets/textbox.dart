@@ -25,34 +25,37 @@ class _InputBoxState extends State<InputBox> {
 
     return Padding(
       padding: const EdgeInsets.only(top: 20),
-      child: TextField(
-        keyboardType: widget.type,
-        obscureText: widget.isPassword&&x,
-        controller: widget.controller,
-        textAlignVertical: TextAlignVertical.center,
+      child: Container(
+        height: 40,
+        child: TextField(
+          keyboardType: widget.type,
+          obscureText: widget.isPassword&&x,
+          controller: widget.controller,
+          textAlignVertical: TextAlignVertical.bottom,
 
-        decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: BorderSide(color: Colors.black,width: 0)),
-            focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: BorderSide(color: Colors.black,width: 0)),
-            fillColor: Colors.grey.shade200,
-            hintText: widget.hint,
-            suffixIcon: widget.isPassword?IconButton(icon: Icon(Icons.visibility_off,color: Colors.grey,),onPressed: (){
-
-
-              setState(() {
-                x = !x;
-                print(x);
-              });
+          decoration: InputDecoration(
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: BorderSide(color: Colors.black,width: 0)),
+              focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: BorderSide(color: Colors.black,width: 0)),
+              fillColor: Colors.grey.shade200,
+              hintText: widget.hint,
+              suffixIcon: widget.isPassword?IconButton(icon: Icon(Icons.visibility_off,color: Colors.grey,),onPressed: (){
 
 
+                setState(() {
+                  x = !x;
+                  print(x);
+                });
 
 
 
-              },):null,
-            //suffix: isPassword?Icon(Icons.visibility_off):null,
-            hintStyle: TextStyle(color: Colors.grey.shade800),
-            filled: true,
-            focusColor: Colors.grey
+
+
+                },):null,
+              //suffix: isPassword?Icon(Icons.visibility_off):null,
+              hintStyle: TextStyle(color: Colors.grey.shade800),
+              filled: true,
+              focusColor: Colors.grey
+          ),
         ),
       ),
     );
