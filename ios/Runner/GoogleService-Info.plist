@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>877393502170-81kk0tt2ikq8onc68csgm9lad2huq8mn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.877393502170-81kk0tt2ikq8onc68csgm9lad2huq8mn</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBjhOo6I2uJH-yLrigAn-dldG7sKjBJG3c</string>
+	<key>GCM_SENDER_ID</key>
+	<string>877393502170</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.digiwrecks.chaShing</string>
+	<key>PROJECT_ID</key>
+	<string>chashing-ff35b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>chashing-ff35b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:877393502170:ios:f939861c56bd34f5aaaae3</string>
+	<key>DATABASE_URL</key>
+	<string>https://chashing-ff35b.firebaseio.com</string>
+</dict>
+</plist>

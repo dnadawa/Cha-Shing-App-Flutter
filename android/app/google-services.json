@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "877393502170",
+    "firebase_url": "https://chashing-ff35b.firebaseio.com",
+    "project_id": "chashing-ff35b",
+    "storage_bucket": "chashing-ff35b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877393502170:android:1dd3c53382a7885daaaae3",
+        "android_client_info": {
+          "package_name": "com.digiwrecks.cha_shing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "877393502170-mh6gkph0ad4j6hl0cii4sk0akav3ri45.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBo_A3bgeA1aJQXLbpbggGYhT1u3egELUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "877393502170-mh6gkph0ad4j6hl0cii4sk0akav3ri45.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,7 +3,12 @@ import 'package:cha_shing/widgets/textbox.dart';
 import 'package:flutter/material.dart';
 
 
+
 class Verify extends StatelessWidget {
+
+
+  TextEditingController phone = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,14 +31,31 @@ class Verify extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Image(image: AssetImage('images/verification.png')),
-              Text('Verify Your Number',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
-              Text('Please Enter Your Mobile Number to Recieve One Time Password',style: TextStyle(color: Colors.white,fontSize: 18),textAlign: TextAlign.center,),
-              InputBox(hint: '+1',type: TextInputType.phone,),
-              Button(color: Colors.white,textColor: Theme.of(context).accentColor,onclick: (){},text: 'SEND OTP',)
+              SizedBox(width: double.infinity,height: 50,),
+              Container(
+                  height: 100,
+                  child: Image(image: AssetImage('images/verification.png'))),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 30),
+                child: Text('Verify Your Number',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: Text('Please Enter Your Mobile Number to Recieve One Time Password',style: TextStyle(color: Colors.white,fontSize: 18),textAlign: TextAlign.center,),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: InputBox(hint: '+1',type: TextInputType.phone,controller: phone,),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(30,40,30,0),
+                child: Button(color: Colors.white,textColor: Theme.of(context).accentColor,onclick: (){
+
+                  },text: 'SEND OTP',),
+              )
             ],
           ),
           ),
