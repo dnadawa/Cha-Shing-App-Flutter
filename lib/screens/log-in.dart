@@ -8,6 +8,18 @@ import 'package:flutter/material.dart';
 
 
 class LogIn extends StatelessWidget {
+
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+
+
+
+
+  
+
+
+
   @override
   Widget build(BuildContext context) {
     double x = MediaQuery.of(context).size.width/20;
@@ -27,8 +39,8 @@ class LogIn extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                InputBox(hint: 'Email',type: TextInputType.emailAddress,),
-                InputBox(hint: 'Password',isPassword: true,),
+                InputBox(hint: 'Email',type: TextInputType.emailAddress,controller: email,),
+                InputBox(hint: 'Password',isPassword: true,controller: password,),
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: Button(color: Theme.of(context).accentColor,text: 'LOGIN',onclick: (){},),

@@ -1,5 +1,8 @@
+import 'package:cha_shing/screens/affiliate-login.dart';
 import 'package:cha_shing/screens/code-input.dart';
+import 'package:cha_shing/screens/home.dart';
 import 'package:cha_shing/screens/log-in.dart';
+import 'package:cha_shing/screens/reffaral-login.dart';
 import 'package:cha_shing/screens/verify.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +25,7 @@ class MyApp extends StatelessWidget {
         accentColor: Color(0xff00a550)
       ),
 
-      home: LogIn(),
+      home: HomePage(),
 
     );
   }
