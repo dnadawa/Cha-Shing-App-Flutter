@@ -19,7 +19,7 @@ class SignUp extends StatelessWidget {
   TextEditingController com_password = TextEditingController();
   TextEditingController passwordf = TextEditingController();
 
-final CollectionReference collectionReference = Firestore.instance.collection("users");
+final CollectionReference collectionReference = Firestore.instance.collection("regular_login");
 
 
    signUp(String emailAddress, String password) async {
