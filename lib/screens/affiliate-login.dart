@@ -1,5 +1,7 @@
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
+import 'package:cha_shing/widgets/toast.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 
@@ -8,6 +10,10 @@ class AffiliateLogin extends StatelessWidget {
 
 
   TextEditingController phone = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController last400 = TextEditingController();
+  TextEditingController timetocall = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +48,41 @@ class AffiliateLogin extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(width: double.infinity,height: 50,),
-                    InputBox(hint: 'Name',type: TextInputType.text,),
-                    InputBox(hint: 'Last 400 Social',type: TextInputType.text,),
-                    InputBox(hint: 'Email',type: TextInputType.emailAddress,),
-                    InputBox(hint: 'Phone',type: TextInputType.phone,),
-                    InputBox(hint: 'Time to Call',type: TextInputType.datetime,),
+                    InputBox(hint: 'Name',type: TextInputType.text,controller: name,),
+                    InputBox(hint: 'Last 400 Social',type: TextInputType.text,controller: last400,),
+                    InputBox(hint: 'Email',type: TextInputType.emailAddress,controller: email,),
+                    InputBox(hint: 'Phone',type: TextInputType.phone,controller: phone,),
+                    InputBox(hint: 'Time to Call',type: TextInputType.datetime,controller: timetocall,),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(30,20,30,20),
-                      child: Button(color: Theme.of(context).accentColor,text: 'LOGIN',onclick: (){},),
+                      child: Button(color: Theme.of(context).accentColor,text: 'LOGIN',onclick: () async {
+
+
+                        var sub = await Firestore.instance.collection('affiliate').where('email', isEqualTo: email.text).getDocuments();
+                        var userlist = sub.documents;
+
+                        if(userlist.isEmpty){
+                          await Firestore.instance.collection('affiliate').add({
+                            'name': name.text,
+                            'last_400_social': last400.text,
+                            'email': email.text,
+                            'phone': phone.text,
+                            'time_to_call': timetocall.text
+                          });
+                          ToastBar(text: 'User Logged as Affiliate',color: Colors.green).show();
+                          name.clear();
+                          last400.clear();
+                          email.clear();
+                          phone.clear();
+                          timetocall.clear();
+
+
+                        }else{
+                          ToastBar(text: 'You are already an Affiliate',color: Colors.red).show();
+                        }
+
+
+                      },),
                     ),
                     Text('Login as referral',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)
                   ],

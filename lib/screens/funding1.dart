@@ -1,5 +1,8 @@
+import 'package:cha_shing/screens/funding-business.dart';
+import 'package:cha_shing/screens/funding-personal.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -12,6 +15,22 @@ class Funding1 extends StatefulWidget {
 }
 
 class _Funding1State extends State<Funding1> {
+
+String selectedRadio;
+  setSelectedRadio(String val) {
+    setState(() {
+      selectedRadio = val;
+      //print(selectedRadio);
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    selectedRadio = 'personal';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +55,8 @@ class _Funding1State extends State<Funding1> {
               ),
               Row(
                 children: <Widget>[
-                  Radio(value: 1, groupValue: 1, onChanged: (value){
-                    print(value);
+                  Radio(value: 'personal', groupValue: selectedRadio, onChanged: (value){
+                    setSelectedRadio(value);
                   }),
                   Text('Personal',style: TextStyle(fontWeight: FontWeight.w900),)
                 ],
@@ -45,8 +64,8 @@ class _Funding1State extends State<Funding1> {
 
               Row(
                 children: <Widget>[
-                  Radio(value: 1, groupValue: 1, onChanged: (value){
-                    print(value);
+                  Radio(value: 'business', groupValue: selectedRadio, onChanged: (value){
+                    setSelectedRadio(value);
                   }),
                   Text('Business',style: TextStyle(fontWeight: FontWeight.w900),)
                 ],
@@ -54,7 +73,27 @@ class _Funding1State extends State<Funding1> {
 
               Padding(
                 padding: const EdgeInsets.fromLTRB(40,100,40,0),
-                child: Button(text: 'Submit',textColor: Colors.black,color: Theme.of(context).accentColor,onclick: (){},),
+                child: Button(text: 'Submit',textColor: Colors.black,color: Theme.of(context).accentColor,onclick: (){
+
+                  if(selectedRadio=='personal'){
+                    print('persoal selected');
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(builder: (context) => FundingPersonal()),
+                    );
+
+                  }
+                  else{
+                    print('business selected');
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(builder: (context) => FundingBusiness()),
+                    );
+                  }
+
+
+
+                },),
               )
             ],
           ),

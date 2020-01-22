@@ -1,19 +1,53 @@
+import 'package:cha_shing/screens/affiliate-login.dart';
 import 'package:cha_shing/screens/credit-repair-1.dart';
 import 'package:cha_shing/screens/funding1.dart';
+import 'package:cha_shing/screens/log-in.dart';
+import 'package:cha_shing/screens/sign-up.dart';
 import 'package:cha_shing/screens/taxes1.dart';
+import 'package:cha_shing/screens/taxes2.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
 import 'package:cha_shing/widgets/tile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
 
 
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   TextEditingController phone = TextEditingController();
+
+   String type;
+
+  getUserExists() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String email = prefs.getString('email');
+    CollectionReference x = Firestore.instance.collection('affiliate');
+    var sub = await x.where('email',isEqualTo: email).getDocuments();
+    var userlist = sub.documents;
+    if(userlist.isNotEmpty){
+      type = 'affiliate';
+    }else{
+      type = 'normal';
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getUserExists();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +74,32 @@ class HomePage extends StatelessWidget {
             ListView(
               shrinkWrap: true,
               children: <Widget>[
-                Tile(text: 'Home',),
+                Tile(text: 'Home',page: HomePage(),),
                 Tile(text: 'Account Type',),
-                Tile(text: 'Setup Profile',),
-                Tile(text: 'Become Affiliate',),
+                Tile(text: 'Setup Profile',page: SignUp(),),
+                Tile(text: 'Become Affiliate',page: AffiliateLogin(),),
                 Tile(text: 'Questions',),
-                Tile(text: 'Logout',),
+                Container(
+                  margin: EdgeInsets.fromLTRB(40, 30, 20, 0),
+                  child: GestureDetector(
+                    onTap: () async {
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      prefs.setString('email', null);
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(builder: (context) => LogIn()),
+                      );
+                    },
+                    child: Text(
+                      'LogOut',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
+                ),
               ],
             )
 
@@ -110,7 +164,7 @@ class HomePage extends StatelessWidget {
                             onTap: (){
                               Navigator.push(
                                 context,
-                                CupertinoPageRoute(builder: (context) => Taxes1()),
+                                CupertinoPageRoute(builder: (context) => type=='affiliate'?Taxes1():Taxes2()),
                               );
                             },
                             child: Container(

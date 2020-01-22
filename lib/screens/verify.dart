@@ -1,16 +1,74 @@
+import 'dart:convert';
+
+import 'package:cha_shing/screens/code-input.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
 
 class Verify extends StatelessWidget {
 
+  final String email;
 
   TextEditingController phone = TextEditingController();
 
+  String verifyId;
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  Verify({Key key, this.email}) : super(key: key);
+
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
+
+    PhoneCodeAutoRetrievalTimeout _codeAutoRetrievalTimeout (String verID){
+
+      this.verifyId = verID;
+      print(verID);
+    }
+
+
+    PhoneCodeSent   _smsCodeSent(String verificationId,[Int]) {
+
+      this.verifyId = verificationId;
+      print('Sms send code called and $verificationId');
+      Navigator.push(
+        context,
+        CupertinoPageRoute(builder: (context) => VerificationCodeInput(verId: verificationId,email: email,)),
+      );
+    }
+
+
+    verifyPhone(String phone) async {
+      try {
+        await auth.verifyPhoneNumber(
+            phoneNumber: phone, // PHONE NUMBER TO SEND OTP
+            timeout: const Duration(seconds: 20),
+            codeSent: _smsCodeSent,
+            codeAutoRetrievalTimeout: _codeAutoRetrievalTimeout,
+            verificationFailed: (AuthException exceptio) {
+              //print('${exceptio.message}');
+            },
+            verificationCompleted: (AuthCredential credential){
+              print('completed');
+        }
+        );
+      } catch (e) {
+        print(e);
+      }
+    }
+
+
+
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -52,9 +110,7 @@ class Verify extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(30,40,30,0),
-                child: Button(color: Colors.white,textColor: Theme.of(context).accentColor,onclick: (){
-
-                  },text: 'SEND OTP',),
+                child: Button(color: Colors.white,textColor: Theme.of(context).accentColor,onclick: ()=>verifyPhone(phone.text),text: 'SEND OTP',),
               )
             ],
           ),

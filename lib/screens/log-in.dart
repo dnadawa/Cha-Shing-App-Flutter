@@ -1,8 +1,11 @@
 import 'package:cha_shing/screens/sign-up.dart';
+import 'package:cha_shing/screens/verify.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
+import 'package:cha_shing/widgets/toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 
@@ -12,10 +15,29 @@ class LogIn extends StatelessWidget {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+
+ signIn(String email, String password,BuildContext context) async {
+
+   try{
+     AuthResult result = await auth.signInWithEmailAndPassword(
+         email: email, password: password);
+     FirebaseUser user = result.user;
+     print(user.uid);
 
 
 
+     Navigator.push(
+       context,
+       CupertinoPageRoute(builder: (context) => Verify(email: email,)),
+     );
+   }
+   catch(E){
+    ToastBar(color: Colors.red,text: 'Somethins went Wrong').show();
+   }
 
+  }
   
 
 
@@ -43,7 +65,7 @@ class LogIn extends StatelessWidget {
                 InputBox(hint: 'Password',isPassword: true,controller: password,),
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
-                  child: Button(color: Theme.of(context).accentColor,text: 'LOGIN',onclick: (){},),
+                  child: Button(color: Theme.of(context).accentColor,text: 'LOGIN',onclick: ()=>signIn(email.text, password.text,context),),
                 ),
 
                 Padding(
