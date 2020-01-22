@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         accentColor: Color(0xff00a550)
       ),
 
-      home: FundingPersonal(),
+      home: LogIn(),
 
     );
   }

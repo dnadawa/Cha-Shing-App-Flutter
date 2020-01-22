@@ -21,34 +21,41 @@ class ReffaralLogin extends StatelessWidget {
       ),
 
       body: Center(
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          margin: EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage('images/verify_back.png')),//todo: add image
-            //color: Theme.of(context).primaryColor,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(width: double.infinity,height: 50,),
-                InputBox(hint: 'Name',type: TextInputType.text,),
-                InputBox(hint: 'Email',type: TextInputType.emailAddress,),
-                InputBox(hint: 'Phone',type: TextInputType.phone,),
-                InputBox(hint: 'Time to Call',type: TextInputType.datetime,),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30,20,30,20),
-                  child: Button(color: Theme.of(context).accentColor,text: 'LOGIN',onclick: (){},),
+        child: Stack(
+          children: <Widget>[
+            Align(
+                alignment: Alignment.bottomCenter,
+                child: Image(image: AssetImage('images/shape.png'))),
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              margin: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage('images/logo_back.png')),//todo: add image
+                //color: Theme.of(context).primaryColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(width: double.infinity,height: 50,),
+                    InputBox(hint: 'Name',type: TextInputType.text,),
+                    InputBox(hint: 'Email',type: TextInputType.emailAddress,),
+                    InputBox(hint: 'Phone',type: TextInputType.phone,),
+                    InputBox(hint: 'Time to Call',type: TextInputType.datetime,),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30,20,30,20),
+                      child: Button(color: Theme.of(context).accentColor,text: 'LOGIN',onclick: (){},),
+                    ),
+                    Text('Login as referral',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)
+                  ],
                 ),
-                Text('Login as referral',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
