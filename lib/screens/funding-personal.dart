@@ -3,9 +3,12 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
 import 'package:cha_shing/widgets/toast.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
+
+import 'home.dart';
 
 
 class FundingPersonal extends StatefulWidget {
@@ -73,6 +76,9 @@ class _FundingPersonalState extends State<FundingPersonal> {
       name.clear();email.clear();phone.clear();timetocall.clear();
       amount.clear();creditscore.clear();typeOfLoan.clear();
       print('Message sent: ' + sendReport.toString());
+      Navigator.push(
+          context,
+          CupertinoPageRoute(builder: (context) => HomePage()));
     } on MailerException catch (e) {
       ToastBar(text: 'Data Not Sent',color: Colors.red).show();
       print('Message not sent.');
@@ -107,7 +113,7 @@ class _FundingPersonalState extends State<FundingPersonal> {
                 InputBox(hint: 'Name',type: TextInputType.text,controller: name,),
                 InputBox(hint: 'Email',type: TextInputType.emailAddress,controller: email,),
                 InputBox(hint: 'Phone Number',type: TextInputType.phone,controller: phone,),
-                InputBox(hint: 'Time to Call',type: TextInputType.datetime,controller: timetocall,),
+                InputBox(hint: 'Time to Call',type: TextInputType.text,controller: timetocall,),
                 InputBox(hint: 'Amount',type: TextInputType.number,controller: amount,),
                 InputBox(hint: 'Credit Score',type: TextInputType.number,controller: creditscore,),
                 InputBox(hint: 'Type of Loan',type: TextInputType.text,controller: typeOfLoan,),

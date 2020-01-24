@@ -5,7 +5,10 @@ import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
 import 'package:cha_shing/widgets/toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'home.dart';
 
 
 class CreditRepair1 extends StatefulWidget {
@@ -83,6 +86,9 @@ class _CreditRepair1State extends State<CreditRepair1> {
                       phone_home.clear();
                       phone_mobile.clear();
 
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(builder: (context) => HomePage()));
                     }
                     catch(E){
                       ToastBar(text: 'Something Went Wrong',color: Colors.red).show();

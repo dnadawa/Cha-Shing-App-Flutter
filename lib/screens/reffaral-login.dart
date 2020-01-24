@@ -45,7 +45,7 @@ class ReffaralLogin extends StatelessWidget {
                     InputBox(hint: 'Name',type: TextInputType.text,),
                     InputBox(hint: 'Email',type: TextInputType.emailAddress,),
                     InputBox(hint: 'Phone',type: TextInputType.phone,),
-                    InputBox(hint: 'Time to Call',type: TextInputType.datetime,),
+                    InputBox(hint: 'Time to Call',type: TextInputType.text,),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(30,20,30,20),
                       child: Button(color: Theme.of(context).accentColor,text: 'LOGIN',onclick: (){},),

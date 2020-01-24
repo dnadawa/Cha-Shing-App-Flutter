@@ -61,11 +61,13 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     getUserExists();
     getName();
+    print('init state called');
   }
 
   getName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     name = prefs.getString('name');
+    setState(() {});
     print(name);
   }
 

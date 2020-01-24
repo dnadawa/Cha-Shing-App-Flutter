@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:cha_shing/screens/home.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
 import 'package:cha_shing/widgets/toast.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
@@ -105,6 +107,11 @@ class _Taxes1State extends State<Taxes1> {
         ToastBar(text: 'Data Sent',color: Colors.green).show();
         name.clear();email.clear();phone.clear();url.clear();com.clear();
         filling.clear();
+
+        Navigator.push(
+          context,
+          CupertinoPageRoute(builder: (context) => HomePage()));
+
       } on MailerException catch (e) {
         ToastBar(text: 'Data Not Sent',color: Colors.red).show();
         print('Message not sent.');

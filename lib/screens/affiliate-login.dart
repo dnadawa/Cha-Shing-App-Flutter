@@ -62,7 +62,7 @@ class AffiliateLogin extends StatelessWidget {
                     InputBox(hint: 'Name',type: TextInputType.text,controller: name,),
                     InputBox(hint: 'Email',type: TextInputType.emailAddress,controller: email,),
                     InputBox(hint: 'Phone',type: TextInputType.phone,controller: phone,),
-                    InputBox(hint: 'Time to Call',type: TextInputType.datetime,controller: timetocall,),
+                    InputBox(hint: 'Time to Call',type: TextInputType.text,controller: timetocall,),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(30,20,30,20),
                       child: Button(color: Theme.of(context).accentColor,text: 'LOGIN',onclick: () async {

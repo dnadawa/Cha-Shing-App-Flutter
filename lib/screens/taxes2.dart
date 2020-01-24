@@ -3,9 +3,12 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
 import 'package:cha_shing/widgets/toast.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
+
+import 'home.dart';
 
 
 class Taxes2 extends StatefulWidget {
@@ -64,6 +67,9 @@ class _Taxes2State extends State<Taxes2> {
       print('Message sent: ' + sendReport.toString());
       ToastBar(text: 'Data Sent',color: Colors.green).show();
       name.clear();email.clear();phone.clear();time.clear();refferd.clear();
+      Navigator.push(
+          context,
+          CupertinoPageRoute(builder: (context) => HomePage()));
     } on MailerException catch (e) {
       ToastBar(text: 'Data Not Sent',color: Colors.red).show();
       print('Message not sent.');
