@@ -11,13 +11,22 @@ import 'package:cha_shing/screens/taxes1.dart';
 import 'package:cha_shing/screens/taxes2.dart';
 import 'package:cha_shing/screens/verify.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'screens/log-in.dart';
 import 'screens/log-in.dart';
 import 'screens/verify.dart';
 import 'screens/verify.dart';
 
-void main(){
+
+
+String email;
+Future<void> main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  email = prefs.getString('email') ?? null;
+
 
   runApp(MyApp());
 }
@@ -31,7 +40,7 @@ class MyApp extends StatelessWidget {
         accentColor: Color(0xff00a550)
       ),
 
-      home: LogIn(),
+      home: email==null?LogIn():HomePage(),
 
     );
   }

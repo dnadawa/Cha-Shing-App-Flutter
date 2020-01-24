@@ -3,16 +3,27 @@ import 'package:cha_shing/widgets/textbox.dart';
 import 'package:cha_shing/widgets/toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 
 class AffiliateLogin extends StatelessWidget {
 
 
+  _launchURL() async {
+    const url = 'https://www.messenger.com/login.php?next=https%3A%2F%2Fwww.messenger.com%2Ft%2F104862861048695%2F%3Fmessaging_source%3Dsource%253Apages%253Amessage_shortlink';
+    if (await canLaunch(url)) {
+      await launch(url,forceWebView: true,enableJavaScript: true,forceSafariVC: true);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+
   TextEditingController phone = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController name = TextEditingController();
-  TextEditingController last400 = TextEditingController();
+
   TextEditingController timetocall = TextEditingController();
 
   @override
@@ -49,7 +60,6 @@ class AffiliateLogin extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(width: double.infinity,height: 50,),
                     InputBox(hint: 'Name',type: TextInputType.text,controller: name,),
-                    InputBox(hint: 'Last 400 Social',type: TextInputType.text,controller: last400,),
                     InputBox(hint: 'Email',type: TextInputType.emailAddress,controller: email,),
                     InputBox(hint: 'Phone',type: TextInputType.phone,controller: phone,),
                     InputBox(hint: 'Time to Call',type: TextInputType.datetime,controller: timetocall,),
@@ -64,17 +74,20 @@ class AffiliateLogin extends StatelessWidget {
                         if(userlist.isEmpty){
                           await Firestore.instance.collection('affiliate').add({
                             'name': name.text,
-                            'last_400_social': last400.text,
                             'email': email.text,
                             'phone': phone.text,
                             'time_to_call': timetocall.text
                           });
+
                           ToastBar(text: 'User Logged as Affiliate',color: Colors.green).show();
+                          _launchURL();
+
                           name.clear();
-                          last400.clear();
                           email.clear();
                           phone.clear();
                           timetocall.clear();
+
+
 
 
                         }else{
@@ -84,7 +97,7 @@ class AffiliateLogin extends StatelessWidget {
 
                       },),
                     ),
-                    Text('Login as referral',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)
+                   // Text('Login as referral',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)
                   ],
                 ),
               ),

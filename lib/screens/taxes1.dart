@@ -73,33 +73,40 @@ class _Taxes1State extends State<Taxes1> {
     String _comment = com.text;
     String _url = url.text;
 
-    final smtpServer = gmail(username, password);
-    // Create our message.
-    final message = Message()
-      ..from = Address(username, 'Cha Shing')
-      ..recipients.add('dulajnadawa@gmail.com')
-      ..subject = 'Taxes (Reffaral)'
-      ..attachments.add(FileAttachment(file))
-      ..text = 'Name:\t $_name\n'
-          'Email:\t $_email\n'
-          'Filling Status:\t $_filling\n'
-          'Phone:\t $_phone\n'
-          'URL Link:\t $_url\n'
-          'Comment:\t $_comment';
+    if(_url!=''){
+      final smtpServer = gmail(username, password);
+      // Create our message.
+      final message = Message()
+        ..from = Address(username, 'Cha Shing')
+        ..recipients.add('solutions@taxqueenservice.com')
+        ..subject = 'Taxes (Reffaral)'
+        ..attachments.add(FileAttachment(file))
+        ..text = 'Name:\t $_name\n'
+            'Email:\t $_email\n'
+            'Filling Status:\t $_filling\n'
+            'Phone:\t $_phone\n'
+            'URL Link:\t $_url\n'
+            'Comment:\t $_comment';
 
-    try {
-      final sendReport = await send(message, smtpServer);
-      print('Message sent: ' + sendReport.toString());
-      ToastBar(text: 'Data Sent',color: Colors.green).show();
-      name.clear();email.clear();phone.clear();url.clear();com.clear();
-      filling.clear();
-    } on MailerException catch (e) {
-      ToastBar(text: 'Data Not Sent',color: Colors.red).show();
-      print('Message not sent.');
-      for (var p in e.problems) {
-        print('Problem: ${p.code}: ${p.msg}');
+      try {
+        final sendReport = await send(message, smtpServer);
+        print('Message sent: ' + sendReport.toString());
+        ToastBar(text: 'Data Sent',color: Colors.green).show();
+        name.clear();email.clear();phone.clear();url.clear();com.clear();
+        filling.clear();
+      } on MailerException catch (e) {
+        ToastBar(text: 'Data Not Sent',color: Colors.red).show();
+        print('Message not sent.');
+        for (var p in e.problems) {
+          print('Problem: ${p.code}: ${p.msg}');
+        }
       }
     }
+    else{
+      ToastBar(color: Colors.red,text: 'Fill All the fields').show();
+    }
+
+
   }
 
 

@@ -32,7 +32,7 @@ class FundingPersonal extends StatelessWidget {
     // Create our message.
     final message = Message()
       ..from = Address(username, 'Cha Shing')
-      ..recipients.add('dulajnadawa@gmail.com')
+      ..recipients.add('info@royaltyfunding.com')
     //..ccRecipients.addAll(['destCc1@example.com', 'destCc2@example.com'])
     //..bccRecipients.add(Address('bccAddress@example.com'))
       ..subject = 'Funding (Personal) Data'
@@ -89,7 +89,7 @@ class FundingPersonal extends StatelessWidget {
                 InputBox(hint: 'Time to Call',type: TextInputType.datetime,controller: timetocall,),
                 InputBox(hint: 'Amount',type: TextInputType.number,controller: amount,),
                 InputBox(hint: 'Credit Score',type: TextInputType.number,controller: creditscore,),
-                InputBox(hint: 'Type of Loan',type: TextInputType.number,controller: typeOfLoan,),
+                InputBox(hint: 'Type of Loan',type: TextInputType.text,controller: typeOfLoan,),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(40,30,40,0),
                   child: Button(text: 'Submit',textColor: Colors.black,color: Theme.of(context).accentColor,onclick: ()=>sendMail(),),

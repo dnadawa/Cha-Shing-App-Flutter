@@ -34,7 +34,7 @@ class LogIn extends StatelessWidget {
      );
    }
    catch(E){
-    ToastBar(color: Colors.red,text: 'Somethins went Wrong').show();
+    ToastBar(color: Colors.red,text: 'Something went Wrong').show();
    }
 
   }
@@ -44,7 +44,7 @@ class LogIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double x = MediaQuery.of(context).size.width/20;
+    double x = MediaQuery.of(context).size.width/30;
     double y = MediaQuery.of(context).size.width/10;
 
     return Scaffold(

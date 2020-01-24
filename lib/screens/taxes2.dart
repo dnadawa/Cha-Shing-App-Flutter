@@ -29,7 +29,7 @@ class Taxes2 extends StatelessWidget {
     // Create our message.
     final message = Message()
       ..from = Address(username, 'Cha Shing')
-      ..recipients.add('dulajnadawa@gmail.com')
+      ..recipients.add('solutions@taxqueenservice.com')
     //..ccRecipients.addAll(['destCc1@example.com', 'destCc2@example.com'])
     //..bccRecipients.add(Address('bccAddress@example.com'))
       ..subject = 'Taxes (Reffaral)'

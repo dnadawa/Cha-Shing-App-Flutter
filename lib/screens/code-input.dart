@@ -1,6 +1,7 @@
 import 'package:cha_shing/screens/home.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/toast.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,11 @@ class VerificationCodeInput extends StatelessWidget {
       print(credential);
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('email', email);
+
+      var sub = await Firestore.instance.collection('regular_login').where('email',isEqualTo: email).getDocuments();
+      var userN = sub.documents;
+
+      prefs.setString('name', userN[0].data['name']);
 
 
       Navigator.pushReplacement(

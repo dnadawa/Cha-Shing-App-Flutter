@@ -1,3 +1,5 @@
+import 'package:cha_shing/screens/home.dart';
+import 'package:cha_shing/screens/log-in.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
 import 'package:cha_shing/widgets/toast.dart';
@@ -5,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -22,7 +25,7 @@ class SignUp extends StatelessWidget {
 final CollectionReference collectionReference = Firestore.instance.collection("regular_login");
 
 
-   signUp(String emailAddress, String password) async {
+   signUp(String emailAddress, String password, BuildContext context) async {
 
      if(com_password.text==passwordf.text){
 
@@ -45,7 +48,17 @@ final CollectionReference collectionReference = Firestore.instance.collection("r
            phone.clear();
            email.clear();
 
+           SharedPreferences prefs = await SharedPreferences.getInstance();
+           prefs.setString('email', emailAddress);
+           prefs.setString('name', name.text);
            ToastBar(color: Colors.green,text: 'Signed Up Successfully!').show();
+
+           Navigator.push(
+             context,
+             CupertinoPageRoute(builder: (context) => HomePage()),
+           );
+
+
          }
          catch(E){
            print(E);
@@ -96,13 +109,19 @@ final CollectionReference collectionReference = Firestore.instance.collection("r
                     InputBox(hint: 'Mobile Number',type: TextInputType.phone,controller: phone,),
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
-                      child: Button(color: Colors.white,text: 'SIGN UP',textColor: Colors.black,onclick: ()=>signUp(email.text, passwordf.text),),
+                      child: Button(color: Colors.white,text: 'SIGN UP',textColor: Colors.black,onclick: ()=>signUp(email.text, passwordf.text,context),),
                     ),
 
                     Padding(
                       padding: const EdgeInsets.fromLTRB(50,20,50,0),
                       child: GestureDetector(
-                          onTap: (){Navigator.pop(context);},
+                          onTap: (){
+
+                            Navigator.push(
+                              context,
+                              CupertinoPageRoute(builder: (context) => LogIn()),
+                            );
+                          },
                           child: Text('Sign In',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),)),
                     )
                   ],
