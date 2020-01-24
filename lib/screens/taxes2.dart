@@ -1,3 +1,5 @@
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
 import 'package:cha_shing/widgets/toast.dart';
@@ -6,16 +8,34 @@ import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
 
 
-class Taxes2 extends StatelessWidget {
+class Taxes2 extends StatefulWidget {
 
+  @override
+  _Taxes2State createState() => _Taxes2State();
+}
+
+class _Taxes2State extends State<Taxes2> {
+
+  AudioCache _audioCache;
   TextEditingController name = TextEditingController();
+
   TextEditingController email = TextEditingController();
+
   TextEditingController phone = TextEditingController();
+
   TextEditingController time = TextEditingController();
+
   TextEditingController refferd = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    // create this only once
+    _audioCache = AudioCache(fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP));
+  }
 
   sendMail() async {
+    await _audioCache.play('sound.mp3');
     String username = 'chashing47@gmail.com';
     String password = 'Dulaj@123';
 
@@ -52,10 +72,6 @@ class Taxes2 extends StatelessWidget {
       }
     }
   }
-
-
-
-
 
   @override
   Widget build(BuildContext context) {

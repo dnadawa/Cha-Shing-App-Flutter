@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
 import 'package:cha_shing/widgets/toast.dart';
@@ -17,7 +19,15 @@ class Taxes1 extends StatefulWidget {
 
 class _Taxes1State extends State<Taxes1> {
   File file;
+  AudioCache _audioCache;
 
+
+  @override
+  void initState() {
+    super.initState();
+    // create this only once
+    _audioCache = AudioCache(fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP));
+  }
 
   _displayDialog(BuildContext context) async {
     return showDialog(
@@ -63,6 +73,7 @@ class _Taxes1State extends State<Taxes1> {
 
 
   sendMail() async {
+    await _audioCache.play('sound.mp3');
     String username = 'chashing47@gmail.com';
     String password = 'Dulaj@123';
 

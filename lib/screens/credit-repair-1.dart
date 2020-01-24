@@ -1,3 +1,6 @@
+
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
 import 'package:cha_shing/widgets/toast.dart';
@@ -5,18 +8,31 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 
-class CreditRepair1 extends StatelessWidget {
+class CreditRepair1 extends StatefulWidget {
 
+  @override
+  _CreditRepair1State createState() => _CreditRepair1State();
+}
+
+class _CreditRepair1State extends State<CreditRepair1> {
+  AudioCache _audioCache;
 
   TextEditingController name = TextEditingController();
+
   TextEditingController email = TextEditingController();
+
   TextEditingController suffix = TextEditingController();
+
   TextEditingController phone_home = TextEditingController();
+
   TextEditingController phone_mobile = TextEditingController();
 
-
-
-
+  @override
+  void initState() {
+    super.initState();
+    // create this only once
+    _audioCache = AudioCache(fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +66,7 @@ class CreditRepair1 extends StatelessWidget {
                   child: Button(text: 'Submit',textColor: Colors.black,color: Theme.of(context).accentColor,onclick: () async {
 
 
+                    await _audioCache.play('sound.mp3');
                     try{
                       await Firestore.instance.collection('credit_repair').add({
                         'name': name.text,

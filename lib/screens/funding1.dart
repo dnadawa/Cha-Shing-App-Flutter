@@ -1,3 +1,5 @@
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cha_shing/screens/funding-business.dart';
 import 'package:cha_shing/screens/funding-personal.dart';
 import 'package:cha_shing/widgets/button.dart';
@@ -16,6 +18,8 @@ class Funding1 extends StatefulWidget {
 
 class _Funding1State extends State<Funding1> {
 
+  AudioCache _audioCache;
+
 String selectedRadio;
   setSelectedRadio(String val) {
     setState(() {
@@ -29,7 +33,9 @@ String selectedRadio;
     // TODO: implement initState
     super.initState();
     selectedRadio = 'personal';
+    _audioCache = AudioCache(fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP));
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -73,8 +79,9 @@ String selectedRadio;
 
               Padding(
                 padding: const EdgeInsets.fromLTRB(40,100,40,0),
-                child: Button(text: 'Submit',textColor: Colors.black,color: Theme.of(context).accentColor,onclick: (){
+                child: Button(text: 'Submit',textColor: Colors.black,color: Theme.of(context).accentColor,onclick: () async {
 
+                  await _audioCache.play('sound.mp3');
                   if(selectedRadio=='personal'){
                     print('persoal selected');
                     Navigator.push(

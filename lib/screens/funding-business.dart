@@ -1,3 +1,5 @@
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
 import 'package:cha_shing/widgets/toast.dart';
@@ -6,17 +8,38 @@ import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
 
 
-class FundingBusiness extends StatelessWidget {
+class FundingBusiness extends StatefulWidget {
 
+  @override
+  _FundingBusinessState createState() => _FundingBusinessState();
+}
+
+class _FundingBusinessState extends State<FundingBusiness>{
+
+AudioCache _audioCache;
   TextEditingController name = TextEditingController();
+
   TextEditingController email = TextEditingController();
+
   TextEditingController phone = TextEditingController();
+
   TextEditingController timetocall = TextEditingController();
+
   TextEditingController amount = TextEditingController();
+
   TextEditingController creditscore = TextEditingController();
+
   TextEditingController typeOfLoan = TextEditingController();
+@override
+void initState() {
+  super.initState();
+  // create this only once
+  _audioCache = AudioCache(fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP));
+}
+
 
   sendMail() async {
+    await _audioCache.play('sound.mp3');
     String username = 'chashing47@gmail.com';
     String password = 'Dulaj@123';
 
@@ -58,8 +81,6 @@ class FundingBusiness extends StatelessWidget {
       }
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
