@@ -11,7 +11,7 @@ class AffiliateLogin extends StatelessWidget {
 
 
   _launchURL() async {
-    const url = 'https://www.messenger.com/login.php?next=https%3A%2F%2Fwww.messenger.com%2Ft%2F104862861048695%2F%3Fmessaging_source%3Dsource%253Apages%253Amessage_shortlink';
+    const url = 'https://royaltybuildersllc.com/shop?olsPage=products%2Faffiliate-sign-up';
     if (await canLaunch(url)) {
       await launch(url,forceWebView: true,enableJavaScript: true,forceSafariVC: true);
     } else {
