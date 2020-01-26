@@ -18,6 +18,23 @@ class LogIn extends StatelessWidget {
   FirebaseAuth auth = FirebaseAuth.instance;
 
 
+  resetPassword() async {
+    if(email.text!=''){
+      try{
+        await auth.sendPasswordResetEmail(email: email.text);
+        ToastBar(text: 'Password reset link is sent to your email!',color: Colors.green).show();
+      }
+      catch(E){
+        ToastBar(text: 'Something went Wrong!',color: Colors.red).show();
+      }
+
+    }
+    else{
+      ToastBar(text: 'Please enter your email address!',color: Colors.red).show();
+    }
+
+  }
+
  signIn(String email, String password,BuildContext context) async {
 
    try{
@@ -68,6 +85,8 @@ class LogIn extends StatelessWidget {
                   child: Button(color: Theme.of(context).accentColor,text: 'LOGIN',onclick: ()=>signIn(email.text, password.text,context),),
                 ),
 
+
+
                 Padding(
                   padding: const EdgeInsets.fromLTRB(40,15,40,0),
                   child: Button(color: Theme.of(context).accentColor,text: 'Create an Account', onclick: (){
@@ -77,7 +96,13 @@ class LogIn extends StatelessWidget {
                     );
 
                   },),
-                )
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: GestureDetector(
+                      onTap: ()=>resetPassword(),
+                      child: Text('Forgot Password',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),)),
+                ),
               ],
             ),
           ),

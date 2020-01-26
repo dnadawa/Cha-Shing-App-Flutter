@@ -1,7 +1,9 @@
+import 'package:cha_shing/screens/affiliate-buy.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
 import 'package:cha_shing/widgets/toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -67,32 +69,11 @@ class AffiliateLogin extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(30,20,30,20),
                       child: Button(color: Theme.of(context).accentColor,text: 'LOGIN',onclick: () async {
 
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(builder: (context) => AffiliatePayment(email: email.text,name: name.text,phone: phone.text,timeToCall: timetocall.text,)),
+                        );
 
-                        var sub = await Firestore.instance.collection('affiliate').where('email', isEqualTo: email.text).getDocuments();
-                        var userlist = sub.documents;
-
-                        if(userlist.isEmpty){
-                          await Firestore.instance.collection('affiliate').add({
-                            'name': name.text,
-                            'email': email.text,
-                            'phone': phone.text,
-                            'time_to_call': timetocall.text
-                          });
-
-                          ToastBar(text: 'User Logged as Affiliate',color: Colors.green).show();
-                          _launchURL();
-
-                          name.clear();
-                          email.clear();
-                          phone.clear();
-                          timetocall.clear();
-
-
-
-
-                        }else{
-                          ToastBar(text: 'You are already an Affiliate',color: Colors.red).show();
-                        }
 
 
                       },),
