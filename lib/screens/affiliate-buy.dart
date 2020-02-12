@@ -83,25 +83,27 @@ class AffiliatePayment extends StatelessWidget {
                       child: Button(text: 'BUY',color: Theme.of(context).accentColor,textColor: Colors.white,onclick: () async {
 
 
-                        var sub = await Firestore.instance.collection('affiliate').where('email', isEqualTo: email).getDocuments();
-                        var userlist = sub.documents;
-
-                        if(userlist.isEmpty){
-                          await Firestore.instance.collection('affiliate').add({
-                            'name': name,
-                            'email': email,
-                            'phone': phone,
-                            'time_to_call': timeToCall});
-
-                          _launchURL();
-                          //ToastBar(text: 'User Logged as Affiliate',color: Colors.green).show();
-
-
-
-
-                        }else{
-                          ToastBar(text: 'You are already an Affiliate',color: Colors.red).show();
-                        }
+//                        var sub = await Firestore.instance.collection('affiliate').where('email', isEqualTo: email).getDocuments();
+//                        var userlist = sub.documents;
+//
+//                        if(userlist.isEmpty){
+//                          await Firestore.instance.collection('affiliate').add({
+//                            'name': name,
+//                            'email': email,
+//                            'phone': phone,
+//                            'time_to_call': timeToCall});
+//
+//
+//                          //ToastBar(text: 'User Logged as Affiliate',color: Colors.green).show();
+//
+//
+//
+//
+//                        }
+                        _launchURL();
+//                        else{
+//                          ToastBar(text: 'You are already an Affiliate',color: Colors.red).show();
+//                        }
 
 
 

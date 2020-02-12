@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
 
 
   _launchURL() async {
-    const url = 'https://www.messenger.com/login.php?next=https%3A%2F%2Fwww.messenger.com%2Ft%2F104862861048695%2F%3Fmessaging_source%3Dsource%253Apages%253Amessage_shortlink';
+    const url = 'https://m.me/104862861048695';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
