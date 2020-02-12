@@ -1,9 +1,6 @@
 import 'package:cha_shing/screens/affiliate-login.dart';
-import 'package:cha_shing/screens/funding-business.dart';
-import 'package:cha_shing/screens/funding-personal.dart';
 import 'package:cha_shing/screens/log-in.dart';
 import 'package:cha_shing/widgets/button.dart';
-import 'package:cha_shing/widgets/textbox.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

@@ -1,12 +1,11 @@
 import 'dart:convert';
-
 import 'package:cha_shing/screens/code-input.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_widgets/responsive_widgets.dart';
+
 
 
 
@@ -29,12 +28,6 @@ class Verify extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ResponsiveWidgets().init(context,
-        referenceHeight: 1920, // Optional
-        referenceWidth: 1080, // Optional
-        referenceShortestSide: 411 // Optional, default = 360
-    );
-
     PhoneCodeAutoRetrievalTimeout _codeAutoRetrievalTimeout (String verID){
 
       this.verifyId = verID;
@@ -88,7 +81,7 @@ class Verify extends StatelessWidget {
         child: Container(
             width: double.infinity,
             height: double.infinity,
-            margin: EdgeInsetsResponsive.all(20),
+            margin: EdgeInsets.all(20),
             decoration: BoxDecoration(
               image: DecorationImage(image: AssetImage('images/verify_back.png')),//todo: add image
               //color: Theme.of(context).primaryColor,
@@ -107,15 +100,15 @@ class Verify extends StatelessWidget {
                 child: Text('Verify Your Number',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
               ),
               Padding(
-                padding:  EdgeInsetsResponsive.all(40),
+                padding:  EdgeInsets.all(40),
                 child: Text('Please Enter Your Mobile Number to Recieve One Time Password',style: TextStyle(color: Colors.white,fontSize: 18),textAlign: TextAlign.center,),
               ),
               Padding(
-                padding:  EdgeInsetsResponsive.symmetric(horizontal: 40),
+                padding:  EdgeInsets.symmetric(horizontal: 40),
                 child: InputBox(hint: '+1',type: TextInputType.phone,controller: phone,),
               ),
               Padding(
-                padding:  EdgeInsetsResponsive.fromLTRB(80,40,80,0),
+                padding:  EdgeInsets.fromLTRB(80,40,80,0),
                 child: Button(color: Colors.white,textColor: Theme.of(context).accentColor,onclick: ()=>verifyPhone(phone.text),text: 'SEND OTP',),
               )
             ],
