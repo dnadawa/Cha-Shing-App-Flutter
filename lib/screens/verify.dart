@@ -45,12 +45,15 @@ class Verify extends StatelessWidget {
       );
     }
 
+    // let me check
+    //run app ok
+
 
     verifyPhone(String phone) async {
       try {
         await auth.verifyPhoneNumber(
             phoneNumber: phone, // PHONE NUMBER TO SEND OTP
-            timeout: const Duration(seconds: 20),
+            timeout: const Duration(seconds: 120),
             codeSent: _smsCodeSent,
             codeAutoRetrievalTimeout: _codeAutoRetrievalTimeout,
             verificationFailed: (AuthException exceptio) {
