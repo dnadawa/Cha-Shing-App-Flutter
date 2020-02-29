@@ -1,11 +1,14 @@
+import 'package:cha_shing/screens/home.dart';
 import 'package:cha_shing/screens/sign-up.dart';
 import 'package:cha_shing/screens/verify.dart';
 import 'package:cha_shing/widgets/button.dart';
 import 'package:cha_shing/widgets/textbox.dart';
 import 'package:cha_shing/widgets/toast.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -44,10 +47,18 @@ class LogIn extends StatelessWidget {
      print(user.uid);
 
 
+     SharedPreferences prefs = await SharedPreferences.getInstance();
+     prefs.setString('email', email);
+     var sub = await Firestore.instance
+         .collection('regular_login')
+         .where('email', isEqualTo: email)
+         .getDocuments();
+     var userN = sub.documents;
+     prefs.setString('name', userN[0].data['name']);
 
-     Navigator.push(
+     Navigator.pushReplacement(
        context,
-       CupertinoPageRoute(builder: (context) => Verify(email: email,)),
+       CupertinoPageRoute(builder: (context) => HomePage()),
      );
    }
    catch(E){

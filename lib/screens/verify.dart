@@ -53,11 +53,11 @@ class Verify extends StatelessWidget {
       try {
         await auth.verifyPhoneNumber(
             phoneNumber: phone, // PHONE NUMBER TO SEND OTP
-            timeout: const Duration(seconds: 120),
+            timeout: const Duration(seconds: 10),
             codeSent: _smsCodeSent,
             codeAutoRetrievalTimeout: _codeAutoRetrievalTimeout,
             verificationFailed: (AuthException exceptio) {
-              //print('${exceptio.message}');
+              print('${exceptio.message}');
             },
             verificationCompleted: (AuthCredential credential){
               print('completed');
